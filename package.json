@@ -1,0 +1,37 @@
+{
+  "name": "xactions-lite",
+  "version": "1.0.0",
+  "description": "⚡ X/Twitter Automation Toolkit — Auto unfollow, scraping profiles, followers, tweets. No API key needed.",
+  "main": "src/index.js",
+  "type": "module",
+  "bin": {
+    "xactions": "./src/cli/index.js"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "cli": "node src/cli/index.js",
+    "dev": "node --watch src/index.js",
+    "test": "node --test"
+  },
+  "keywords": [
+    "twitter",
+    "x",
+    "automation",
+    "unfollow",
+    "scraping",
+    "puppeteer",
+    "no-api-key"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
+    "commander": "^12.0.0",
+    "chalk": "^5.3.0",
+    "ora": "^8.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
