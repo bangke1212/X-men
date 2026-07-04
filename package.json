@@ -8,9 +8,9 @@
     "xactions": "./src/cli/index.js"
   },
   "scripts": {
-    "start": "node src/index.js",
+    "start": "node api/server.js",
     "cli": "node src/cli/index.js",
-    "dev": "node --watch src/index.js",
+    "dev": "node api/server.js",
     "test": "node --test"
   },
   "keywords": [
@@ -29,7 +29,12 @@
     "puppeteer-extra-plugin-stealth": "^2.11.2",
     "commander": "^12.0.0",
     "chalk": "^5.3.0",
-    "ora": "^8.0.0"
+    "ora": "^8.0.0",
+    "express": "^4.21.0",
+    "ejs": "^3.1.10",
+    "ws": "^8.18.0",
+    "dotenv": "^16.4.5",
+    "chart.js": "^4.4.0"
   },
   "engines": {
     "node": ">=18.0.0"

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XActions Lite — Dashboard</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">
+        <span class="logo-icon">⚡</span>
+        <h1>XActions Lite</h1>
+      </div>
+      <div class="status-badge" id="statusBadge">
+        <span class="dot"></span>
+        <span id="statusText">Idle</span>
+      </div>
+    </header>
+
+    <!-- Control Panel -->
+    <section class="card control-panel" id="controlPanel">
+      <h2>🎛️ Unfollow Control</h2>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label>X Username</label>
+          <input type="text" id="inputUsername" placeholder="@username" />
+        </div>
+        <div class="form-group">
+          <label>Max Unfollow</label>
+          <input type="number" id="inputLimit" value="200" min="1" max="1000" />
+        </div>
+        <div class="form-group">
+          <label>Delay (seconds)</label>
+          <input type="number" id="inputDelay" value="60" min="30" max="300" />
+        </div>
+        <div class="form-group checkbox-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="inputSkipPremium" checked />
+            Skip Premium/Verified
+          </label>
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-start" id="btnStart" onclick="startUnfollow()">
+          ▶️ Start Unfollow
+        </button>
+        <button class="btn btn-pause" id="btnPause" onclick="pauseUnfollow()" disabled>
+          ⏸️ Pause
+        </button>
+        <button class="btn btn-resume" id="btnResume" onclick="resumeUnfollow()" disabled>
+          ▶️ Resume
+        </button>
+        <button class="btn btn-stop" id="btnStop" onclick="stopUnfollow()" disabled>
+          ⏹️ Stop
+        </button>
+      </div>
+    </section>
+
+    <!-- Stats Dashboard -->
+    <section class="stats-grid">
+      <!-- Progress Card -->
+      <div class="card stat-card">
+        <h3>📊 Progress</h3>
+        <div class="stat-value" id="statProgress">0%</div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <!-- Unfollowed Count -->
+      <div class="card stat-card highlight-danger">
+        <h3>❌ Unfollowed</h3>
+        <div class="stat-value" id="statUnfollowed">0</div>
+        <div class="stat-label">Accounts</div>
+      </div>
+
+      <!-- Skipped Premium -->
+      <div class="card stat-card highlight-warning">
+        <h3>👑 Skipped Premium</h3>
+        <div class="stat-value" id="statSkippedPremium">0</div>
+        <div class="stat-label">Verified accounts</div>
+      </div>
+
+      <!-- Skipped Follows Back -->
+      <div class="card stat-card highlight-info">
+        <h3>✅ Follows Back</h3>
+        <div class="stat-value" id="statSkippedFollows">0</div>
+        <div class="stat-label">Mutual followers</div>
+      </div>
+
+      <!-- Total Processed -->
+      <div class="card stat-card">
+        <h3>📋 Total Processed</h3>
+        <div class="stat-value" id="statTotal">0</div>
+        <div class="stat-label">Profiles checked</div>
+      </div>
+
+      <!-- Estimated Time -->
+      <div class="card stat-card">
+        <h3>⏱️ Est. Remaining</h3>
+        <div class="stat-value" id="statEstTime">--</div>
+        <div class="stat-label" id="statRateInfo">--</div>
+      </div>
+
+      <!-- Errors -->
+      <div class="card stat-card highlight-error" id="errorCard" style="display:none">
+        <h3>⚠️ Errors</h3>
+        <div class="stat-value" id="statErrors">0</div>
+      </div>
+    </section>
+
+    <!-- Live Activity -->
+    <section class="card">
+      <h2>📡 Live Activity</h2>
+      <div class="last-action" id="lastAction">
+        <span class="blink-dot"></span>
+        <span id="lastActionText">Waiting for action...</span>
+      </div>
+      <div class="activity-log" id="activityLog">
+        <div class="empty-state">No activity yet. Start an unfollow session to see live updates.</div>
+      </div>
+    </section>
+
+    <!-- Unfollowed List -->
+    <section class="card" id="unfollowedSection">
+      <h2>📋 Recently Unfollowed</h2>
+      <div class="table-container">
+        <table id="unfollowedTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Username</th>
+              <th>Name</th>
+              <th>Time</th>
+            </tr>
+          </thead>
+          <tbody id="unfollowedBody">
+            <tr><td colspan="4" class="empty-state">No data yet</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>
